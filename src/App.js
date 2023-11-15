@@ -1,36 +1,18 @@
 import './App.css';
+import Table from "./Components/Table/Table";
+import {Data} from "./Assets/data";
 
 function App() {
     return (
         <div className="App">
             <header className='App-header'>
                 <div className='drag-n-drop'>
-                    <div className='dnd-table-group'>
-                        <div className='group-title'>Table 1</div>
-                        <div className='dnd-item'>
-                            <di>
-                                <p>Guest 1</p>
-                            </di>
-                        </div>
-                        <div className='dnd-item'>
-                            <di>
-                                <p>Guest 2</p>
-                            </di>
-                        </div>
-                    </div>
-                    <div className='dnd-table-group'>
-                        <div className='group-title'>Table 2</div>
-                        <div className='dnd-item'>
-                            <di>
-                                <p>Guest 1</p>
-                            </di>
-                        </div>
-                        <div className='dnd-item'>
-                            <di>
-                                <p>Guest 2</p>
-                            </di>
-                        </div>
-                    </div>
+                    {Data.map((table, tableIndex) =>
+                        <Table key={tableIndex} {...table} />
+                    )
+                    }
+                    {/*<Table/>*/}
+                    {/*<Table />*/}
                 </div>
 
             </header>
