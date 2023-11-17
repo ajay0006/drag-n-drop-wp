@@ -5,11 +5,11 @@ export const Data =
                 ["John","Jane", "Jackson"],
         },
         {
-            table: "table2", Guests:
+            table: "Table 2", Guests:
                 ["Martha", "Maureen", "Magdalene"],
         },
         {
-            table: 'table3', Guests:
+            table: 'Table 3', Guests:
                 ["Pendragon", "Peter" ]
         }
     ]
