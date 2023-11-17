@@ -59,6 +59,10 @@
 
 }
 
+.current {
+    background-color: #282c34;
+}
+
 .group-title {
     text-align: left;
     margin-bottom: .5rem;
