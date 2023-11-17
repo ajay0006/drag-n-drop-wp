@@ -1,7 +1,8 @@
 export const Data =
     [
         {
-            table: "Table 1", Guests:
+            table: "Table 1",
+            Guests:
                 ["John","Jane", "Jackson"],
         },
         {

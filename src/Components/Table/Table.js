@@ -10,11 +10,12 @@ export default function Table({tableIndex, ...table}) {
     const draggedGuestNode = useRef()
 
     const handleDragStart = (e, params) => {
-        console.log("Starting to drag", params)
-
+        console.log('Start', e.target.id)
+        // console.log("Starting to drag", params)
+        //
         draggedGuestNode.current = e.target
         draggedGuest.current = params
-
+        //
         setTimeout(() => {
             setIsDragging(true)
         }, 0)
@@ -22,24 +23,32 @@ export default function Table({tableIndex, ...table}) {
     }
 
     const handleDragEnter = (e, params) => {
-        console.log("Entering the target drag", params)
-        console.log(e.target)
-
-        if (draggedGuestNode.current !== e.target){
-            console.log("Target is NOT the same as dragged item")
-        }
+        console.log('enter', e.target.id)
+       // console.log("Entering the target drag", params)
+        // console.log(e.target)
+        //
+        // if (draggedGuestNode.current !== e.target){
+        //     console.log("Target is NOT the same as dragged item", params)
+        // }
     }
 
     const handleDragEnd = (e, params) => {
-        console.log('where i am dropping it at', params)
+        console.log('END', e.target.id)
+        // console.log('where i am dropping it at', params)
         setIsDragging(false)
-        draggedGuest.current = null
-        draggedGuestNode.current = null
+        // draggedGuest.current = null
+        // draggedGuestNode.current = null
     }
 
-    const handleOnDropOver = (e, params) => {
-        console.log('I dropped it here', params)
+    const handleDrop = (e, params) => {
+        console.log('Drop', params)
     }
+
+    const handleDragover = (e) => {
+        e.preventDefault()
+    }
+
+
 
     const onDragChangeStyling = (param) => {
         if (draggedGuest.current.tableGuestIndex === param.tableGuestIndex && draggedGuest.current.tableIndex === param.tableIndex){
@@ -60,7 +69,7 @@ export default function Table({tableIndex, ...table}) {
                     handleDragStart = {handleDragStart}
                     handleDragEnter = {handleDragEnter}
                     handleDragEnd = {handleDragEnd}
-                    handleOnDropOver = {handleOnDropOver}
+                    handleDrop={handleDrop}
                     onChangeStyle = {onDragChangeStyling}
                     isDragging = {isDragging}
                 />
