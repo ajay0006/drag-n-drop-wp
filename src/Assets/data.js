@@ -1,60 +1,19 @@
+// const data = [
+//     {title: 'table 1', guests: ['A', 'B', "C"]},
+//     {title: 'table 2', guests: ['D', 'E', "F"]}
+// ]
 export const Data =
     [
         {
-            table: "Table 1", Guests:
-                [
-                    {
-                        name: "John",
-                        Sex: 'M',
-                        Tag: 'Groom'
-                    },
-                    {
-                        name: "Jane",
-                        Sex: 'F',
-                        Tag: 'Groom'
-                    },
-                    {
-                        name: "Joseph",
-                        Sex: 'F',
-                        Tag: 'Groom'
-                    }
-                ],
+            table: "Table 1",
+            Guests: ["John", "Jane", "Joseph"],
         },
         {
-            table: "table2", Guests:
-                [
-                    {
-                        name: "Masha",
-                        Sex: 'M',
-                        Tag: 'Bride'
-                    },
-                    {
-                        name: "Merikey",
-                        Sex: 'F',
-                        Tag: 'Bride'
-                    },
-                    {
-                        name: "Moriaty",
-                        Sex: 'F',
-                        Tag: 'Bride'
-                    }
-                ],
+            table: "Table 2",
+            Guests: ["Masha", "Merikey", "Moriaty"],
         },
         {
-            table: 'table3', Guests:
-                [
-                    {
-                        name: "Pendragon",
-                        Sex: 'M',
-                        Tag: 'Groom'
-                    },
-                    {
-                        name: "Peter",
-                        Sex: 'F',
-                        Tag: 'Groom'
-                    }
-                ]
+            table: "Table 3",
+            Guests: ["Pendragon", "Peter"]
         }
     ]
-
-let test = [{'a': []}, {'b': []}, {'c': []}]
