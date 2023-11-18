@@ -1,11 +1,12 @@
-export default function Guest({tableGuest, handleDragStart, handleDragEnd, handleDragEnter, guestIndex, tableIndex, isDragging, changeStyleOnDrag}) {
+export default function Guest({tableGuest, handleDragStart,handleDragEnter, handleDragEnd, guestIndex, tableIndex, isDragging, changeStyleOnDrag}) {
     return (
         <div
+            id = {tableIndex +''+guestIndex}
             draggable
-            onDragStart={(e) => handleDragStart(e, {guestIndex, tableIndex})}
+            onDragStart={(e) => handleDragStart(e, {tableIndex, guestIndex })}
             onDragEnd={handleDragEnd}
-            onDragEnter={isDragging?(e) => { handleDragEnter(e, {guestIndex, tableIndex})}: null}
-            className={isDragging?changeStyleOnDrag({guestIndex, tableIndex}): 'dnd-item'}>
+            onDragEnter={isDragging?(e) => { handleDragEnter(e, {tableIndex, guestIndex })}: null}
+            className={isDragging?changeStyleOnDrag({tableIndex, guestIndex}): 'dnd-item'}>
             <div>
                 <p>{tableGuest}</p>
             </div>

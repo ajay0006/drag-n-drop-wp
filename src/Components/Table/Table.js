@@ -1,18 +1,15 @@
 import Guest from "../Guest/Guest";
 import {useState, useRef} from "react";
 
-
 export default function Table({tableIndex, ...table}) {
     const [tableData, setTableData] = useState(table)
     const [isDragging, setIsDragging] = useState(false)
     const draggedCoordinates = useRef()
     const draggedNode = useRef()
-
-
     const handleDragStart = (e, params) => {
         draggedNode.current = e.target
         draggedCoordinates.current = params
-
+        console.log("Drag start", params)
         setTimeout(() => {
             setIsDragging(prevState => true)
         }, 0)
@@ -26,6 +23,9 @@ export default function Table({tableIndex, ...table}) {
 
     const handleDragEnter = (e, params) => {
         console.log('Entering drag...', params)
+        console.log('target in handleDragEnter', e.target)
+        console.log('current dragged node', draggedNode.current)
+        console.log(draggedCoordinates.current)
         if (draggedNode.current !== e.target) {
             console.log('They arent the same')
         }
@@ -39,22 +39,28 @@ export default function Table({tableIndex, ...table}) {
         return 'dnd-item'
     }
     return (
-        <div className='dnd-table-group'>
-            <div className='group-title'> {table.table}</div>
-            {tableData.Guests.map((tableGuest, tableGuestIndex) =>
-                <Guest
-                    key={tableGuestIndex}
-                    tableGuest={tableGuest}
-                    handleDragStart={handleDragStart}
-                    handleDragEnd={handleDragEnd}
-                    handleDragEnter={handleDragEnter}
-                    guestIndex={tableGuestIndex}
-                    tableIndex={tableIndex}
-                    isDragging={isDragging}
-                    changeStyleOnDrag={changeStyleOnDrag}
-                />
-            )
-            }
+        <div className='drag-n-drop'>
+            <div key={tableData.table}
+                 className={"dnd-table-group"}
+                 onDragEnter={(e) => handleDragEnter(e, {tableIndex})}
+            > {tableData.table}
+                {tableData.Guests.map((tableGuest, tableGuestIndex) =>
+                    (
+                        <Guest
+                            key={tableGuestIndex}
+                            tableGuest={tableGuest}
+                            handleDragStart={handleDragStart}
+                            handleDragEnd={handleDragEnd}
+                            handleDragEnter={handleDragEnter}
+                            guestIndex={tableGuestIndex}
+                            tableIndex={tableIndex}
+                            isDragging={isDragging}
+                            changeStyleOnDrag={changeStyleOnDrag}
+                        />
+                    )
+                )
+                }
+            </div>
         </div>
     )
 }
