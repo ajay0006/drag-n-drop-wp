@@ -1,7 +1,7 @@
 import Guest from "../Guest/Guest";
-import {useState, useRef} from "react";
+import {useState, useRef, Children} from "react";
 
-export default function Table({tableIndex, ...table}) {
+export default function Table({tableIndex, children, ...table}) {
     const [tableData, setTableData] = useState(table)
     const [isDragging, setIsDragging] = useState(false)
     const draggedCoordinates = useRef()
@@ -39,28 +39,30 @@ export default function Table({tableIndex, ...table}) {
         return 'dnd-item'
     }
     return (
-        <div className='drag-n-drop'>
-            <div key={tableData.table}
-                 className={"dnd-table-group"}
-                 onDragEnter={(e) => handleDragEnter(e, {tableIndex})}
-            > {tableData.table}
-                {tableData.Guests.map((tableGuest, tableGuestIndex) =>
-                    (
-                        <Guest
-                            key={tableGuestIndex}
-                            tableGuest={tableGuest}
-                            handleDragStart={handleDragStart}
-                            handleDragEnd={handleDragEnd}
-                            handleDragEnter={handleDragEnter}
-                            guestIndex={tableGuestIndex}
-                            tableIndex={tableIndex}
-                            isDragging={isDragging}
-                            changeStyleOnDrag={changeStyleOnDrag}
-                        />
+        <>
+            <div className='drag-n-drop'>
+                <div key={tableData.table}
+                     className={"dnd-table-group"}
+                     onDragEnter={(e) => handleDragEnter(e, {tableIndex})}
+                > {tableData.table}
+                    {tableData.Guests.map((tableGuest, tableGuestIndex) =>
+                        (
+                            <Guest
+                                key={tableGuestIndex}
+                                tableGuest={tableGuest}
+                                handleDragStart={handleDragStart}
+                                handleDragEnd={handleDragEnd}
+                                handleDragEnter={handleDragEnter}
+                                guestIndex={tableGuestIndex}
+                                tableIndex={tableIndex}
+                                isDragging={isDragging}
+                                changeStyleOnDrag={changeStyleOnDrag}
+                            />
+                        )
                     )
-                )
-                }
+                    }
+                </div>
             </div>
-        </div>
+        </>
     )
 }

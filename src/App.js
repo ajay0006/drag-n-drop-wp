@@ -8,11 +8,9 @@ function App() {
             <header className='App-header'>
                 <div className='drag-n-drop'>
                     {Data.map((table, tableIndex) =>
-                        <Table key={tableIndex} {...table} tableIndex = {tableIndex} />
+                        <Table key={tableIndex} {...table} tableIndex={tableIndex}/>
                     )
                     }
-                    {/*<Table/>*/}
-                    {/*<Table />*/}
                 </div>
 
             </header>
