@@ -2,7 +2,7 @@ import {Children, useState} from "react";
 
 export default function Table({handleDragEnterTable, tableIndex, isDragging, children, ...table}) {
     console.log("table guest",!table.Guests.length)
-    console.log(isDragging)
+    console.log("isDraggin", isDragging)
 
     return (
         <div key={table.table}

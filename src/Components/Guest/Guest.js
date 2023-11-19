@@ -14,7 +14,7 @@ export default function Guest({
             draggable
             onDragStart={(e) => handleDragStart(e, {tableIndex, guestIndex})}
             onDragEnd={(e) => handleDragEnd(e)}
-            onDragEnter={isDragging ? (e) => {
+            onDrop={isDragging ? (e) => {
                 handleDragEnter(e, {tableIndex, guestIndex})
             } : null}
             onDragOver={(e) => e.preventDefault()}
