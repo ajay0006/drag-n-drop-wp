@@ -13,10 +13,11 @@ export default function Guest({
             id={tableIndex + '' + guestIndex}
             draggable
             onDragStart={(e) => handleDragStart(e, {tableIndex, guestIndex})}
-            onDragEnd={handleDragEnd}
+            onDragEnd={(e) => handleDragEnd(e)}
             onDragEnter={isDragging ? (e) => {
                 handleDragEnter(e, {tableIndex, guestIndex})
             } : null}
+            onDragOver={(e) => e.preventDefault()}
             className={isDragging ? changeStyleOnDrag({tableIndex, guestIndex}) : 'dnd-item'}>
             <div>
                 <p>{tableGuest}</p>

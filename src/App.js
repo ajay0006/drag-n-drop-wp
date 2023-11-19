@@ -2,25 +2,37 @@ import './App.css';
 import Table from "./Components/Table/Table";
 import {Data} from "./Assets/data";
 import Guest from "./Components/Guest/Guest";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 function App() {
     const [tableData, setTableData] = useState(Data)
     const [isDragging, setIsDragging] = useState(false)
     const draggedCoordinates = useRef()
     const draggedNode = useRef()
+
+    useEffect(() => {
+        console.log("TD", tableData)
+    }, [tableData])
     const handleDragStart = (e, params) => {
         draggedNode.current = e.target
         draggedCoordinates.current = params
         setTimeout(() => {
-            setIsDragging(true)
+            setIsDragging(prevState => {
+                if (!prevState) {
+                    return true
+                }
+            })
         }, 0)
     }
 
-    const handleDragEnd = () => {
+    const handleDragEnd = (e) => {
         draggedNode.current = null
         draggedCoordinates.current = null
-        setIsDragging(false)
+        setIsDragging(prevState => {
+            if (prevState) {
+                return false
+            }
+        })
 
     }
 
@@ -48,20 +60,22 @@ function App() {
         <div className="App">
             <header className='App-header'>
                 <div className='drag-n-drop'
+                     onDragOver={(e) => e.preventDefault()}
                 >
                     {tableData.map((table, tableIndex) =>
                         <Table
-
                             key={tableIndex}
-                            handleDragEnter={handleDragEnter}
                             {...table}
                             tableIndex={tableIndex}
                             isDragging={isDragging}
+                            handleDragEnterTable={handleDragEnter}
+
                         >
                             {table.Guests.map((tableGuest, tableGuestIndex) =>
                                 (
                                     <Guest
-                                        key={tableGuestIndex}
+                                        id={tableIndex+''+tableGuestIndex}
+                                        key={tableIndex+''+tableGuestIndex}
                                         tableGuest={tableGuest}
                                         handleDragStart={handleDragStart}
                                         handleDragEnd={handleDragEnd}
