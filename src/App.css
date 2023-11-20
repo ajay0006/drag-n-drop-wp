@@ -33,6 +33,7 @@
 
 .dnd-table-group {
     background-color: #4b5260;
+    height: 500px;
     border-radius: 6px;
     padding: .5rem;
 }
